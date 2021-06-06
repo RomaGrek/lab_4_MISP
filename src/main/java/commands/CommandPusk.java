@@ -3,6 +3,7 @@ package commands;
 import general.HistoryPoint;
 import mbeans.Points;
 import mbeans.PointsMBean;
+import mbeans.Square;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +16,7 @@ public class CommandPusk {
         commands.put(name, commandDo);
     }
 
-    public static void doing(String words, HistoryPoint historyPoint, Points p) {
+    public static void doing(String words, HistoryPoint historyPoint, Points p, Square square) {
         String[] partsWords = words.split(" ");
         if (words.isEmpty()) {
             return;
@@ -38,8 +39,9 @@ public class CommandPusk {
             String r = partsWords[3];
             if (commandDo != null) {
                 if (p.validatePoint(x, y, r)) {
-                    p.refreshPoints(historyPoint.getHistoryList());
                     commandDo.doing(x, y, r, historyPoint);
+                    square.refreshSquare(r);
+                    p.refreshPoints(historyPoint.getHistoryList());
                 }else {
                     System.out.println("Вы ввели некорректные входные данные(шо?)");
                 }

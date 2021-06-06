@@ -15,11 +15,11 @@ public class Main {
 
         MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
         ObjectName name = new ObjectName("Roman.Machine:type=Points");
-//        ObjectName name2 = new ObjectName("Roman.Machine:type=Square");
+        ObjectName name2 = new ObjectName("Roman.Machine:type=Square");
         Points points = new Points();
         mbs.registerMBean(points,name);
-//        Square square = new Square();
-//        mbs.registerMBean(square,name2);
+        Square square = new Square();
+        mbs.registerMBean(square,name2);
 
         HistoryPoint historyPoint = new HistoryPoint();
         Exit exit = new Exit();
@@ -32,7 +32,7 @@ public class Main {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
             String pop = bufferedReader.readLine();
             if (!pop.isEmpty()) {
-                CommandPusk.doing(pop, historyPoint, points);
+                CommandPusk.doing(pop, historyPoint, points, square);
                 System.out.println();
             }
         }
